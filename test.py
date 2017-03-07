@@ -1,6 +1,4 @@
-#_*_ coding: utf-8_*_
-import urllib
-import re
-num = 2.4
-content = "asdasd%s"%num+"asd,%s%s" % (num,num)
-print content
+# coding=utf-8
+from datetime import datetime
+nowDatetime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+print nowDatetime

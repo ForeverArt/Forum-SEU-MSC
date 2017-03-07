@@ -1,5 +1,5 @@
 # coding=utf-8
-from datetime import datatime
+from datetime import datetime
 import MySQLdb
 
 class DateTimeUtil:
@@ -17,12 +17,12 @@ class DateTimeUtil:
 
     @staticmethod
     def getNowDatetime():
-        nowDatetime = datetime.datetime.now()
+        nowDatetime = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         return nowDatetime
 
     @staticmethod
     def getNowTime():
-        nowTime = datetime.datetime.now().time()
+        nowTime = datetime.now().time()
         return nowTime
 
 class DatabaseUtil:

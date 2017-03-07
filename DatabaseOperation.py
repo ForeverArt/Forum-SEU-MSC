@@ -15,7 +15,7 @@ class PostOperation:
     @staticmethod
     def fetchAll():
         sql = "select * from %s"%PostOperation.tablename
-        print sql
+        # print sql
         PostOperation.cursor.execute(sql)
         results = PostOperation.cursor.fetchall()
         all_post_array=[]
@@ -37,7 +37,7 @@ class PostOperation:
     @staticmethod
     def fetchById(post_id):
         sql = "select * from %s"%PostOperation.tablename+" where post_id = %s" %(post_id)
-        print sql
+        # print sql
         PostOperation.cursor.execute(sql)
         results = PostOperation.cursor.fetchall()
         post_array=[]
@@ -60,8 +60,8 @@ class PostOperation:
     def fetchPostId(post):
         author_id = post.author_id
         create_time = post.create_time
-        sql = "select * from %s"%PostOperation.tablename+" where author_id = %s and create_time = %s" % (post.author_id, post.create_time)
-        print sql
+        sql = "select * from %s"%PostOperation.tablename+" where author_id = %s and create_time = \'%s\'" % (post.author_id, post.create_time)
+        # print sql
         PostOperation.cursor.execute(sql)
         results = PostOperation.cursor.fetchall()
         row = results[0]
@@ -70,14 +70,15 @@ class PostOperation:
         return post_id
     ##################insert##################
     #新增，发布一个post
+    @staticmethod
     def insert(post):
         author_id = post.author_id
         title = post.title
         content = post.content
         create_time = post.create_time
         update_time = post.update_time
-        sql = "insert table %s"%PostOperation.tablename+" (author_id, title, content, create_time, update_time) values(%s,%s,%s,%s,%s)" % (author_id, title, content, create_time, update_time)
-        print sql
+        sql = "insert into %s"%PostOperation.tablename+" (author_id, title, content, create_time, update_time) values(%s,\'%s\',\'%s\',\'%s\',\'%s\')" % (author_id, title, content, create_time, update_time)
+        # print sql
         try:
             # 执行sql语句
             PostOperation.cursor.execute(sql)

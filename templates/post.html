@@ -5,6 +5,11 @@
     <title></title>
   </head>
   <body>
-
+    {% if post[0] is None %}
+      <p>Sorry, this post is not exist.</p>
+    {% else %}
+      <p>{{post[0].title}}</p>
+      <p>{{post[0].content}}</p>
+    {% end %}
   </body>
 </html>

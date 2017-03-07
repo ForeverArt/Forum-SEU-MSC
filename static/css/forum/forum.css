@@ -1,0 +1,33 @@
+.box{
+    margin:0 auto;
+    boxder:1px solid #ccc;
+    background:#000;
+    filter:alpha(opacity:70);
+    opacity:0.9;
+    -moz-opacity:0.3;
+    -khtml-opacity: 0.3}
+
+.wrap{
+  float:left;
+  position:relative;
+  left:50%;
+}
+
+.wrap_center{
+  background: #ccc;
+  position:relative;
+  left:-50%;
+}
+
+.RightList{
+  float:right;
+}
+
+.LeftCard{
+
+}
+
+#BigScreen{
+  width:80%;
+  margin:0px auto;
+}

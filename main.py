@@ -14,7 +14,7 @@ from tornado.options import define, options
 
 #functional import
 import MySQLdb
-from DateTimeUtil import *
+from util import *
 from Modal import *
 from DatabaseOperation import *
 
@@ -32,17 +32,16 @@ class PostHandler(tornado.web.RequestHandler):
     def get(self,post_id):
         postId = int(post_id)
         post = PostOperation.fetchById(postId)
-        if len(post) < 1:
-            self.render('error.html',msg = "Post Not Found")
-        else:
-            self.render('post.html',post = post)
+        self.render('post.html',post = post)
 
 class PublishHandler(tornado.web.RequestHandler):
     def get(self):
         self.render('write.html')
     def post(self):
         post_id = -999
-        author_id = self.get_argument("author_id")
+        # author_id = self.get_argument("author_id")
+        # for adding post to test
+        author_id = 7;
         title = self.get_argument("title")
         content = self.get_argument("content")
         create_time = DateTimeUtil.getNowDatetime()
@@ -56,14 +55,23 @@ class PublishHandler(tornado.web.RequestHandler):
         post.post_id = PostOperation.fetchPostId(post)
         self.render('published.html', post = post)
 
+class PersonalHandler(tornado.web.RequestHandler):
+    def get(self,user_id):
+        self.render('personal.html')
+    def post(self,user_id):
+        # self look
+        self.render('personal.html')
+
+
 #setting
 if __name__ == '__main__':
     tornado.options.parse_command_line()
     app = tornado.web.Application(
             handlers=[
                 (r'/forum',ForumHandler),
-                (r'/post/(.+)',PostHandler),
+                (r'/post/([0-9]+)',PostHandler),
                 (r'/publish',PublishHandler),
+                (r'/personal/([0-9]+)',PersonalHandler),
             ],
             template_path=os.path.join(os.path.dirname(__file__),'templates'),
             static_path=os.path.join(os.path.dirname(__file__),'static')
